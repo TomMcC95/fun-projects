@@ -5,6 +5,9 @@ import matplotlib.widgets as widgets
 import numpy as np
 from matplotlib.widgets import Cursor
 import matplotlib.ticker as ticker
+import os
+
+cwd = os.path.dirname(__file__)
 
 def get_data(url):
     response = get(endpoint, timeout=10)
@@ -50,13 +53,12 @@ if __name__ == '__main__':
     df['new100Cases'] = df['newCases']/100
     df['new100Hospital'] = df['newHospital']/100
     df['new1000Tests'] = df['newTests']/1000
-
     
     df['new100Cases'].plot(label='new100Cases', color='orange')
     df['new1000Tests'].plot(label='new1000Tests')
     df['new100Hospital'].plot(label='new100Hospital')
     df['newDeaths'].plot(label='newDeaths')
-    
+
     plt.title('Covid Data')
     plt.xlabel('Day')
     plt.legend()
@@ -88,6 +90,7 @@ if __name__ == '__main__':
     plt.title('Covid Data Rolling')
     plt.xlabel('Day')
     plt.legend()
+    plt.savefig(rf'{cwd}\Seven Day Rolling Average Covid Data.png', dpi=300)
     plt.show()
 
 
